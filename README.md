@@ -12,8 +12,7 @@ TBLPROPERTIES ("dynamodb.table.name" = "log",
 "dynamodb.column.mapping" = "id:id,data:data");
 
 -- query dynamodb table using hive SQL
-SELECT * 
-FROM hiveLogTable;
+SELECT * FROM hiveLogTable;
 
 -- export dynamodb table to s3
 INSERT OVERWRITE DIRECTORY 's3://com.brianpfeil.scratch/emr/dynamodb/export/table/log/' SELECT * 
@@ -25,8 +24,7 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 LOCATION 's3://com.brianpfeil.scratch/emr/dynamodb/export/table/log/';
 
 -- export dynamodb table to s3 as comman delimited file (csv)
-INSERT OVERWRITE TABLE s3_export SELECT * 
-FROM hiveLogTable;
+INSERT OVERWRITE TABLE s3_export SELECT * FROM hiveLogTable;
 
 -- link hive table to s3 path
 CREATE EXTERNAL TABLE s3_import(id string, data string)
